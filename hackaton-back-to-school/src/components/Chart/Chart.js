@@ -38,10 +38,11 @@ class Chart extends Component{
    
     
     render(){
+        console.log("props from chart is: ",this.props.chartData);
         let chart=null
         if (this.state.barClicked) {
         chart=<Bar 
-        data ={this.state.chartData}
+        data ={this.props.chartData}
         options ={{
             title:{
                 display:true,
@@ -57,7 +58,7 @@ class Chart extends Component{
         }
         else if(this.state.pieClicked){
             chart= <Pie 
-            data ={this.state.chartData}
+            data ={this.props.chartData}
             options ={{
                 title:{
                     display:true,
@@ -73,7 +74,7 @@ class Chart extends Component{
         }
         else if(this.state.lineClicked){
             chart= <Line 
-            data ={this.state.chartData}
+            data ={this.props.chartData}
             options ={{
                 title:{
                     display:true,
