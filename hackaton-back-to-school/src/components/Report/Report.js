@@ -41,6 +41,21 @@ class Report extends Component{
             });
             
     }
+    generateRandomColor(min,max){ 
+        let random =Math.floor(Math.random() * (+max - +min)) + +min; 
+        
+        return random;
+    }
+
+    randomColorsList(){
+        const color=[]
+        for(let i=0;i<=50;i++){
+            let val='rgba('+this.generateRandomColor(0,255)+','+this.generateRandomColor(0,255)+','+this.generateRandomColor(0,255)+','+0.6+')';
+            color.push(val);
+        }
+
+        return color;
+    }
 
     getChartData(){
         const label=[...this.state.populationLabel];
@@ -49,23 +64,13 @@ class Report extends Component{
 
         this.setState({
           chartData:{
-            labels:[...label.splice(0,9)],
+            labels:[...label.splice(0,50)],
             datasets:[
                 {
                     label:'Status',
-                    data:[...data.splice(0,9)],
-                    backgroundColor:[
-                        'rgba(255,99,132,0.6)',
-                        'rgba(54,162,235,0.6)',
-                        'rgba(255,206,86,0.6)',
-                        'rgba(75,192,192,0.6)',
-                        'rgba(153,102,255,0.6)',
-                        'rgba(255,159,64,0.6)',
-                        'rgba(125,99,132,0.6)',
-                        'rgba(54,91,235,0.6)',
-                        'rgba(12,206,86,0.6)'
-                
-                    ]
+                    data:[...data.splice(0,50)],
+                    backgroundColor:this.randomColorsList()
+                    
                 }
             ]
         }
