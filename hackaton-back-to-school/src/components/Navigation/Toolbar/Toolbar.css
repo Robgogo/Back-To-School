@@ -12,6 +12,20 @@
     box-sizing: border-box;
     z-index: 90;
 }
+.Footer {
+    height: 26px;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    background-color: #703B09;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    box-sizing: border-box;
+    z-index: 90;
+}
 
 .Toolbar nav {
     height: 100%;

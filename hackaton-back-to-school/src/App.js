@@ -4,15 +4,16 @@ import Layout from './hoc/Layout/Layout';
 import Home from './containers/Home/Home';
 import About from './containers/About/About';
 import Categories from './containers/Categories/Categories';
+import Contacts from './components/Contacts';
 
 class App extends Component {
   render () {
     return (
       <div>
         <Layout>
-
           <Switch>
             <Route path="/about" component={About} />
+            <Route path="/contacts" component={Contacts} />
             <Route path="/categories" component={Categories} />
             <Route path="/" exact component={Home} />
           </Switch>

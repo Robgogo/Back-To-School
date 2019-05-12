@@ -2,14 +2,24 @@ import React,{Component} from 'react';
 import Chart from '../Chart/Chart';
 import classes from './Report.css';
 
+
 class Report extends Component{
     constructor(){
         super();
         this.state ={
+            tableData:[],
             chartData:{}
         }
     }
     componentWillMount(){
+    
+        const url ="https://jsonplaceholder.typicode.com/posts";
+        fetch(url,{
+            method:"GET"
+        }).then(response=>response.json()).then(tableData=>{
+            this.setState({tableData:tableData})
+        });   
+        
         this.getChartData();
     }
     getChartData(){
@@ -51,6 +61,7 @@ class Report extends Component{
     render(){
         return(
             <div className={classes.Report}>
+               
                 <Chart chartData={this.state.chartData}/>
             </div>
         );

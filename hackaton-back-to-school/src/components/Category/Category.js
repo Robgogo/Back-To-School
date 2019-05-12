@@ -1,38 +1,33 @@
-import React from 'react';
+import React,{Component} from 'react';
 
 import classes from './Category.css';
+import pop from '../../assets/images/is-logo.png';
 
-
-const category = ( props ) => {
-    const categories = [];
-
-    for ( let categoryName in props.ingredients ) {
-        categories.push(
-            {
-                name: categoryName,
-                amount: props.categories[categoryName]
-            }
+class Category extends Component{
+    render(){
+        return(
+            <div className={classes.Category}>
+            
+                    <div className="col-md-6 col-lg-6">
+                    <h2 className="header">Population</h2>
+                    <div className="card horizontal">
+                        <div className="card-image">
+                            <img src={pop} alt="Population"/>
+                                </div>
+                            <div className="card-stacked">
+                                <div className="card-content">
+                                    <p>Information about Population of Ethiopia </p>
+                                </div>
+                                <div className="card-action">
+                                    <a href="/">Population</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+          
         );
     }
+}
 
-    const ingredientOutput = categories.map(ig => {
-        return <span 
-            style={{
-                textTransform: 'capitalize',
-                display: 'inline-block',
-                margin: '0 8px',
-                border: '1px solid #ccc',
-                padding: '5px'
-                }}
-            key={ig.name}>{ig.name} ({ig.amount})</span>;
-    });
-
-    return (
-        <div className={classes.Order}>
-            <p>Ingredients: {ingredientOutput}</p>
-            <p>Price: <strong>USD {Number.parseFloat( props.price ).toFixed( 2 )}</strong></p>
-        </div>
-    );
-};
-
-export default category;
+export default Category;

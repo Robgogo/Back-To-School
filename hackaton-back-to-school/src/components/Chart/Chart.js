@@ -102,6 +102,10 @@ class Chart extends Component{
              <button className={classes.button} onClick={this.lineClickHandler}>Line Chart</button>
             </div>
             {chart}
+            <br/>
+            <br/>
+            <br/>
+            <br/>
                
             </div>
         )
