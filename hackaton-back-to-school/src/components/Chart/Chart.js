@@ -96,9 +96,10 @@ class Chart extends Component{
         return(
             <div className="chart">
             <div className='row'>
-            <button className={classes.button} onClick={this.barClickHandler}>Bar</button>
-             <button className={classes.button} onClick={this.pieClickHandler}>Pie</button> 
-             <button className={classes.button} onClick={this.lineClickHandler}>Line</button>
+            <h3>Display the Report Using</h3>
+             <button className={classes.button} onClick={this.barClickHandler}>Bar Chart</button>
+             <button className={classes.button} onClick={this.pieClickHandler}>Pie Chart</button> 
+             <button className={classes.button} onClick={this.lineClickHandler}>Line Chart</button>
             </div>
             {chart}
                

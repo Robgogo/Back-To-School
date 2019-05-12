@@ -1,6 +1,10 @@
 .button{
-    display: block;
+    display: block -moz-box;
     width: 20%;
     align-content: center;
-    background-color: blueviolet;
+    background-color: rgb(31, 16, 3);
+    color: white;
+    padding:20px;
+    margin-left: 20px;
+    left:0;
 }
