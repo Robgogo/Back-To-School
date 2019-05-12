@@ -1,36 +1,59 @@
 import React,{Component} from 'react';
 import Chart from '../Chart/Chart';
 import classes from './Report.css';
-
+import axios from 'axios';
+import PdfContainer from './PdfContainer';
+import Doc from './DocService';
+                                                                                                                                                                                                                                                                                                                                        
 class Report extends Component{
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state ={
-            chartData:{}
+            chartData:{},
+            poppulationData:[],
+            populationLabel:[]
         }
+        
     }
-    componentWillMount(){
-        this.getChartData();
+
+    componentDidMount(){
+        this.getPopulationData();   
     }
+
+    createPdf=(html)=>Doc.createPdf(html);
+
+    getPopulationData(){
+        axios.get("https://restcountries.eu/rest/v2/all?fields=name;population")
+        .then(response => {
+            const data=response.data;
+            const pop=[...data];
+            let population=[]
+            let label=[]
+            for(let i=0;i<pop.length;i++){
+                population.push(pop[i].population)
+                label.push(pop[i].name);
+            }
+
+            
+            this.setState({poppulationData:population,populationLabel:label});
+            }).then(res=>{
+                this.getChartData();
+            });
+            
+    }
+
     getChartData(){
+        const label=[...this.state.populationLabel];
+        const data=[...this.state.poppulationData];
+
+
         this.setState({
           chartData:{
-            labels:['2010','2011','2012','2013','2014','2015','2016','2017','2018'],
+            labels:[...label.splice(0,9)],
             datasets:[
                 {
                     label:'Status',
-                    data:[
-                        250,
-                        200,
-                        150,
-                        100,
-                        80,
-                        40,
-                        25,
-                        160,
-                        200,
-              
-                    ],
+                    data:[...data.splice(0,9)],
                     backgroundColor:[
                         'rgba(255,99,132,0.6)',
                         'rgba(54,162,235,0.6)',
@@ -49,10 +72,16 @@ class Report extends Component{
         })
       }
     render(){
+        
+        console.log("State is",this.state);
         return(
+        <React.Fragment>
+            <PdfContainer createPdf={this.createPdf}>
             <div className={classes.Report}>
                 <Chart chartData={this.state.chartData}/>
             </div>
+            </PdfContainer>
+            </React.Fragment>
         );
     }
 }
